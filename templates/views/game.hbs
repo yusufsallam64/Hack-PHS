@@ -15,6 +15,15 @@
 <body>
   {{> header}}
   <div class="main-content">
+    <table class="centered responsive-table">
+      {{#each characters}}
+      <tr>
+        {{#each this}}
+          <td>{{ this }}</td>
+        {{/each}}
+      </tr>
+      {{/each}}
+    </table>
   </div>
   {{> footer}}
 </body>

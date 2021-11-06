@@ -7,6 +7,7 @@ const hbs = require('hbs')
 
 // routes
 const indexRouter = require('./routes/index');
+const gameRouter = require('./routes/game')
 
 // scripts
 const generator = require('./generator.js');
@@ -41,6 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // setup routes
 app.use('/', indexRouter);
+app.use('/game', gameRouter);
 
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
