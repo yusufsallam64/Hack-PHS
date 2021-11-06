@@ -1,14 +1,15 @@
-body, html {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  background-image: url("https://wallpaperaccess.com/full/2360707.jpg"); 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+div.main-content {
+  padding: 0px 25px;
 }
 
-main {
-  flex: 1 0 auto;
+div.nav-wrapper {
+  padding: 0px 25px;
+}
+
+footer.page-footer {
+  padding-top: 0px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
