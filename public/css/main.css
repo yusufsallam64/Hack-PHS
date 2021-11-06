@@ -2,9 +2,13 @@ body, html {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-image: url("https://wallpaperaccess.com/full/2360707.jpg"); 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 main {
   flex: 1 0 auto;
 }
-    
