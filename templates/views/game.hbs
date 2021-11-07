@@ -28,22 +28,37 @@
   <div class="main-content words purple darken-2 center" style="margin-top: 50px; width: 30%;">
     <h1 class="words_display" style="color: white"></h1>
     <p class="button">Submit</p>
+    <p class="button clear">Clear</p>
   </div>
   {{> footer}}
 </body>
 
+<script src = "/socket.io/socket.io.js"></script>
 <script>
+  let data;
   
-
   let table_elem = document.querySelectorAll('td');
   for (let i = 0; i < table_elem.length; i++) {
     table_elem[i].addEventListener('click', () => {
-      document.querySelector(".words_display").innerHTML += table_elem[i].innerHTML;
+      document.querySelector(".words_display").innerHTML += table_elem[i].innerHTML.toLowerCase();
     })
   }
 
-  document.querySelector("button").addEventListener('click', () => {
+  document.querySelector(".clear").addEventListener('click', () => {
+    document.querySelector(".words_display").innerHTML = "";
+  })
 
+  document.querySelector(".button").addEventListener('click', () => {
+    if (data.includes(document.querySelector(".words_display").innerHTML)) {
+      console.log("true");
+    }
+
+    document.querySelector(".words_display").innerHTML = "";
+  })
+
+  const socket = io();
+  socket.on("words", (words) => {
+    data = words;
   })
 </script>
 </html>

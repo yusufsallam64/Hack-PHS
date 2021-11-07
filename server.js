@@ -4,6 +4,7 @@ const logger = require('morgan');
 const path = require('path');
 const http = require('http');
 const hbs = require('hbs')
+const fs = require('fs');
 
 // routes
 const indexRouter = require('./routes/index');
@@ -13,6 +14,9 @@ const gameRouter = require('./routes/game')
 const generator = require('./generator.js');
 console.log(generator.generateGrid());
 
+// list of text
+const text = fs.readFileSync("words_alpha.txt").toString().split('\n');
+
 // setup express app
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -21,6 +25,10 @@ const PORT = process.env.PORT || 8000;
 const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
+
+io.on('connection', (connection) => {
+    connection.emit("words", text);
+})
 
 // setup paths for config
 const publicDirectoryPath = path.join(__dirname, './public')
