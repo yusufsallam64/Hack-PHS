@@ -10,7 +10,6 @@ module.exports = {
                 grid[i][j] = String.fromCharCode(Math.floor((Math.random() * 26) + 65));
             }
         }
-
         return grid;
     }
 }

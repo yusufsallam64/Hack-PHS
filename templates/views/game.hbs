@@ -14,7 +14,7 @@
 
 <body>
   {{> header}}
-  <div class="main-content">
+  <div class="main-content" style="margin-top: 50px;">
     <table class="centered responsive-table">
       {{#each characters}}
       <tr>
@@ -25,7 +25,25 @@
       {{/each}}
     </table>
   </div>
+  <div class="main-content words purple darken-2 center" style="margin-top: 50px; width: 30%;">
+    <h1 class="words_display" style="color: white"></h1>
+    <p class="button">Submit</p>
+  </div>
   {{> footer}}
 </body>
 
+<script>
+  
+
+  let table_elem = document.querySelectorAll('td');
+  for (let i = 0; i < table_elem.length; i++) {
+    table_elem[i].addEventListener('click', () => {
+      document.querySelector(".words_display").innerHTML += table_elem[i].innerHTML;
+    })
+  }
+
+  document.querySelector("button").addEventListener('click', () => {
+
+  })
+</script>
 </html>
