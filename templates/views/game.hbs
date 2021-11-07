@@ -54,7 +54,6 @@
 
     if (data.includes(document.querySelector(".words_display").innerHTML) && !used.includes(document.querySelector(".words_display").innerHTML)) {
 
-      console.log("correct");
 
       let score_num = document.querySelector(".score_num");
       let score = parseInt(score_num.innerHTML);
@@ -83,7 +82,6 @@
   const socket = io();
   socket.on("words", (words) => {
     data = words;
-    console.log("hello")
   })    
   
 </script>
