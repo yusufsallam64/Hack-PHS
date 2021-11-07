@@ -14,6 +14,9 @@
 
 <body>
   {{> header}}
+  <h3 class="score purple darken-2" style="text-align: center;">Score: <span class="score_num">0</span></h3>
+  <h3 class="timer purple darken-2" style="text-align: center; width: 15%; margin-left: 42%; color: white;">Time Left: <span class="timer_num">90</span></h3>
+  
   <div class="main-content" style="margin-top: 50px;">
     <table class="centered responsive-table">
       {{#each characters}}
@@ -35,8 +38,7 @@
 
 <script src = "/socket.io/socket.io.js"></script>
 <script>
-  let data;
-  
+  let used = []
   let table_elem = document.querySelectorAll('td');
   for (let i = 0; i < table_elem.length; i++) {
     table_elem[i].addEventListener('click', () => {
@@ -49,16 +51,40 @@
   })
 
   document.querySelector(".button").addEventListener('click', () => {
-    if (data.includes(document.querySelector(".words_display").innerHTML)) {
-      console.log("true");
+
+    if (data.includes(document.querySelector(".words_display").innerHTML) && !used.includes(document.querySelector(".words_display").innerHTML)) {
+
+      console.log("correct");
+
+      let score_num = document.querySelector(".score_num");
+      let score = parseInt(score_num.innerHTML);
+      score_num.innerHTML = score + Math.pow(document.querySelector(".words_display").innerHTML.length, 2) * 50;
+
+      used.push(document.querySelector(".words_display").innerHTML);
     }
 
     document.querySelector(".words_display").innerHTML = "";
   })
 
+  function timer(){
+    var sec = 90;
+    var timer = setInterval(function(){
+      document.querySelector('.timer').innerHTML = "Time Left: " + sec;
+      if (sec < 0) {
+        clearInterval(timer);
+        document.querySelector('.timer').innerHTML = "Game Over";
+        document.querySelector('.button').style.display = "none";
+      }
+      sec--;
+    }, 1000);
+  }
+  timer();
+
   const socket = io();
   socket.on("words", (words) => {
     data = words;
-  })
+    console.log("hello")
+  })    
+  
 </script>
 </html>

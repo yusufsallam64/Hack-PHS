@@ -47,3 +47,9 @@ td {
   margin-left: auto;
   margin-right: auto;
 }
+
+.score {
+  width: 15%; 
+  color: white; 
+  margin-left: 42%;
+}

@@ -15,7 +15,7 @@ const generator = require('./generator.js');
 console.log(generator.generateGrid());
 
 // list of text
-const text = fs.readFileSync("words_alpha.txt").toString().split('\n');
+const text = fs.readFileSync("words_alpha.txt").toString().split('\r\n');
 
 // setup express app
 const app = express();
